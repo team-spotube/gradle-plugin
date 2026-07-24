@@ -13,6 +13,7 @@ plugins {
 
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.gradle.publish)
 }
 
 group = "dev.krtirtho.spotube"
@@ -33,12 +34,16 @@ dependencies {
 
 gradlePlugin {
     // Define the plugin
+    website = "https://spotube.cc"
+    vcsUrl = "https://github.com/team-spotube/gradle-plugin"
+
     val spotubeGradlePlugin by plugins.creating {
         id = "dev.krtirtho.spotube.gradle-plugin"
         implementationClass = "dev.krtirtho.SpotubeGradlePluginPlugin"
         version = "0.1.0"
         displayName = "Spotube Gradle Plugin"
         description = "A Gradle plugin for Spotube that packages Zipline executables into smplug files."
+        tags = listOf("spotube", "zipline", "smplug")
     }
 }
 
