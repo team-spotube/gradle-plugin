@@ -12,10 +12,34 @@ abstract class SpotubePluginExtension @Inject constructor(
         """^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"""
     )
 
+    private val urlRegex = Regex(
+        """^https?://[^\s/$.?#].[^\s]*$"""
+    )
+
+    private val spdxRegex = Regex(
+        """^[A-Za-z0-9][A-Za-z0-9.\-]+(\+)?$"""
+    )
+
     private fun validateSemver(value: String?, fieldName: String) {
         if (value != null && !semverRegex.matches(value)) {
             throw IllegalArgumentException(
                 "Invalid semver format for $fieldName: '$value'. Expected format: MAJOR.MINOR.PATCH (e.g., '1.0.0')"
+            )
+        }
+    }
+
+    private fun validateUrl(value: String?, fieldName: String) {
+        if (value != null && !urlRegex.matches(value)) {
+            throw IllegalArgumentException(
+                "Invalid URL format for $fieldName: '$value'. Expected a valid HTTP/HTTPS URL"
+            )
+        }
+    }
+
+    private fun validateSpdx(value: String?, fieldName: String) {
+        if (value != null && !spdxRegex.matches(value)) {
+            throw IllegalArgumentException(
+                "Invalid SPDX license identifier for $fieldName: '$value'. See https://spdx.org/licenses/"
             )
         }
     }
@@ -51,6 +75,35 @@ abstract class SpotubePluginExtension @Inject constructor(
         get() = _author.orNull
         set(value) { if (value != null) _author.set(value) }
 
+    private val _contact: Property<String> = objects.property(String::class.java)
+    var contact: String?
+        get() = _contact.orNull
+        set(value) { if (value != null) _contact.set(value) }
+
+    private val _repository: Property<String> = objects.property(String::class.java)
+    var repository: String?
+        get() = _repository.orNull
+        set(value) {
+            validateUrl(value, "repository")
+            if (value != null) _repository.set(value)
+        }
+
+    private val _bugs: Property<String> = objects.property(String::class.java)
+    var bugs: String?
+        get() = _bugs.orNull
+        set(value) {
+            validateUrl(value, "bugs")
+            if (value != null) _bugs.set(value)
+        }
+
+    private val _license: Property<String> = objects.property(String::class.java)
+    var license: String?
+        get() = _license.orNull
+        set(value) {
+            validateSpdx(value, "license")
+            if (value != null) _license.set(value)
+        }
+
     private val _capabilities: ListProperty<PluginCapability> =
         objects.listProperty(PluginCapability::class.java).convention(emptyList())
     var capabilities: List<PluginCapability>
@@ -80,6 +133,10 @@ abstract class SpotubePluginExtension @Inject constructor(
             apiVersion = _apiVersion.get(),
             description = _description.get(),
             author = _author.get(),
+            contact = _contact.get(),
+            repository = _repository.get(),
+            bugs = _bugs.get(),
+            license = _license.get(),
             capabilities = _capabilities.get(),
             abilities = _abilities.get(),
         )

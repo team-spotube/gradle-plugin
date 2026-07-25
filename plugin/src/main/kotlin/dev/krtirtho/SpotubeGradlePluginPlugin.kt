@@ -63,6 +63,17 @@ class SpotubeGradlePluginPlugin : Plugin<Project> {
         val projectJsonFile = project.layout.projectDirectory.file("plugin.json")
         val logoFile = project.layout.projectDirectory.file("logo.png")
 
+        val rootProjectDir = project.rootProject.layout.projectDirectory
+        val licenseFile = project.provider {
+            val licenseMd = rootProjectDir.file("LICENSE.md").asFile
+            val license = rootProjectDir.file("LICENSE").asFile
+            when {
+                licenseMd.exists() -> licenseMd
+                license.exists() -> license
+                else -> null
+            }
+        }
+
         project.tasks.register("package${capitalizedFlavor}Plugin", Zip::class.java) {
             group = "distribution"
             description =
@@ -88,6 +99,8 @@ class SpotubeGradlePluginPlugin : Plugin<Project> {
 
             from(logoFile)
 
+            from(licenseFile)
+
             inputs.file(project.provider {
                 if (extension.isConfigured()) {
                     generatedJsonFile.get().asFile
@@ -96,6 +109,7 @@ class SpotubeGradlePluginPlugin : Plugin<Project> {
                 }
             })
             inputs.file(logoFile)
+            inputs.file(licenseFile)
         }
     }
 }

@@ -41,6 +41,10 @@ data class PluginMetadata(
     val author: String,
     val capabilities: List<PluginCapability>,
     val abilities: List<PluginAbility>,
+    val contact: String,
+    val repository: String,
+    val bugs: String,
+    val license: String,
 ) {
     fun toJson(): String = JSON.encodeToString(this)
 
