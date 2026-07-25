@@ -18,7 +18,7 @@ This plugin automatically creates packaging tasks when applied alongside the [ap
 
 ```groovy
 plugins {
-    id 'dev.krtirtho.spotube.gradle-plugin' version '0.1.0'
+    id 'dev.krtirtho.spotube.gradle-plugin' version '0.1.1'
 }
 ```
 
@@ -26,7 +26,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("dev.krtirtho.spotube.gradle-plugin") version "0.1.0"
+    id("dev.krtirtho.spotube.gradle-plugin") version "0.1.1"
 }
 ```
 
@@ -36,7 +36,7 @@ Add the plugin to your version catalog (`gradle/libs.versions.toml`):
 
 ```toml
 [plugins]
-spotube = { id = "dev.krtirtho.spotube.gradle-plugin", version = "0.1.0" }
+spotube = { id = "dev.krtirtho.spotube.gradle-plugin", version = "0.1.1" }
 ```
 
 Then reference it in your build files:

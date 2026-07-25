@@ -6,18 +6,17 @@
  */
 
 plugins {
-    // Apply the Java Gradle plugin development plugin to add support for developing Gradle plugins
     `java-gradle-plugin`
     `kotlin-dsl`
     `maven-publish`
 
-    // Apply the Kotlin JVM plugin to add support for Kotlin.
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.gradle.publish)
 }
 
 group = "dev.krtirtho.spotube"
-version = "0.1.0"
+version = "0.1.1"
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -26,7 +25,8 @@ repositories {
 }
 
 dependencies {
-    // Use the Kotlin Test integration.
+    implementation(libs.kotlinx.serialization.json)
+
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
