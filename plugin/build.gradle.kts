@@ -40,7 +40,7 @@ gradlePlugin {
     val spotubeGradlePlugin by plugins.creating {
         id = "dev.krtirtho.spotube.gradle-plugin"
         implementationClass = "dev.krtirtho.SpotubeGradlePluginPlugin"
-        version = "0.1.0"
+        version = "0.1.1"
         displayName = "Spotube Gradle Plugin"
         description = "A Gradle plugin for Spotube that packages Zipline executables into smplug files."
         tags = listOf("spotube", "zipline", "smplug")
