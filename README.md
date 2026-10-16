@@ -18,7 +18,7 @@ This plugin automatically creates packaging tasks when applied alongside the [ap
 
 ```groovy
 plugins {
-    id 'dev.krtirtho.spotube.gradle-plugin' version '0.1.1'
+    id 'org.spotube.gradle-plugin' version '0.1.1'
 }
 ```
 
@@ -26,7 +26,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("dev.krtirtho.spotube.gradle-plugin") version "0.1.1"
+    id("org.spotube.gradle-plugin") version "0.1.1"
 }
 ```
 
@@ -36,7 +36,7 @@ Add the plugin to your version catalog (`gradle/libs.versions.toml`):
 
 ```toml
 [plugins]
-spotube = { id = "dev.krtirtho.spotube.gradle-plugin", version = "0.1.1" }
+spotube = { id = "org.spotube.gradle-plugin", version = "0.1.1" }
 ```
 
 Then reference it in your build files:
@@ -55,7 +55,7 @@ Apply the plugin after the Zipline plugin:
 ```kotlin
 plugins {
     id("app.cash.zipline")
-    id("dev.krtirtho.spotube.gradle-plugin")
+    id("org.spotube.gradle-plugin")
 }
 ```
 

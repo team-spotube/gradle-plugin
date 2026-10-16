@@ -19,7 +19,7 @@ class SpotubeGradlePluginPluginFunctionalTest {
         buildFile.writeText(
             """
             plugins {
-                id("dev.krtirtho.spotube.gradle-plugin")
+                id("org.spotube.gradle-plugin")
             }
 
             spotubePlugin {
@@ -32,8 +32,8 @@ class SpotubeGradlePluginPluginFunctionalTest {
                 repository = "https://github.com/test/plugin"
                 bugs = "https://github.com/test/plugin/issues"
                 license = "MIT"
-                capabilities(dev.krtirtho.PluginCapability.PERSISTENT_STORAGE)
-                abilities(dev.krtirtho.PluginAbility.METADATA, dev.krtirtho.PluginAbility.AUDIO)
+                capabilities(org.spotube.PluginCapability.PERSISTENT_STORAGE)
+                abilities(org.spotube.PluginAbility.METADATA, org.spotube.PluginAbility.AUDIO)
             }
             """.trimIndent()
         )

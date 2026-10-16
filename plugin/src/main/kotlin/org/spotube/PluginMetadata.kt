@@ -1,4 +1,4 @@
-package dev.krtirtho
+package org.spotube
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

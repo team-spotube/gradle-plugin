@@ -15,7 +15,7 @@ plugins {
     alias(libs.plugins.gradle.publish)
 }
 
-group = "dev.krtirtho.spotube"
+group = "org.spotube"
 version = "0.1.1"
 
 repositories {
@@ -38,8 +38,8 @@ gradlePlugin {
     vcsUrl = "https://github.com/team-spotube/gradle-plugin"
 
     val spotubeGradlePlugin by plugins.creating {
-        id = "dev.krtirtho.spotube.gradle-plugin"
-        implementationClass = "dev.krtirtho.SpotubeGradlePluginPlugin"
+        id = "org.spotube.gradle-plugin"
+        implementationClass = "org.spotube.SpotubeGradlePluginPlugin"
         version = "0.1.1"
         displayName = "Spotube Gradle Plugin"
         description = "A Gradle plugin for Spotube that packages Zipline executables into smplug files."

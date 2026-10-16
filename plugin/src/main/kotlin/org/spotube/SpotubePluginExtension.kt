@@ -1,4 +1,4 @@
-package dev.krtirtho
+package org.spotube
 
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.ListProperty
