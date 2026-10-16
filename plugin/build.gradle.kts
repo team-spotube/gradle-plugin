@@ -15,9 +15,6 @@ plugins {
     alias(libs.plugins.gradle.publish)
 }
 
-group = "org.spotube"
-version = "0.1.1"
-
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -36,6 +33,8 @@ gradlePlugin {
     // Define the plugin
     website = "https://spotube.org"
     vcsUrl = "https://github.com/team-spotube/gradle-plugin"
+
+    group = "org.spotube"
 
     val spotubeGradlePlugin by plugins.creating {
         id = "org.spotube.gradle-plugin"
