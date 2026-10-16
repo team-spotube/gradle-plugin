@@ -34,7 +34,7 @@ dependencies {
 
 gradlePlugin {
     // Define the plugin
-    website = "https://spotube.cc"
+    website = "https://spotube.org"
     vcsUrl = "https://github.com/team-spotube/gradle-plugin"
 
     val spotubeGradlePlugin by plugins.creating {

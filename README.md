@@ -85,7 +85,7 @@ packageProductionPlugin  - Packages the production Zipline executable and plugin
 
 ## License
 
-Copyright (C) 2026 spotube.cc
+Copyright (C) 2026 spotube.org
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this software except in compliance with the License.
 
