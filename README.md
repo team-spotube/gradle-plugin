@@ -14,11 +14,22 @@ This plugin automatically creates packaging tasks when applied alongside the [ap
 
 ## Installation
 
+The plugin is published to Maven Central (not the Gradle Plugin Portal), so add `mavenCentral()` to your plugin repositories in `settings.gradle.kts`:
+
+```kotlin
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+```
+
 ### Using the Plugin DSL (Groovy)
 
 ```groovy
 plugins {
-    id 'org.spotube.gradle-plugin' version '0.1.1'
+    id 'org.spotube.gradle-plugin' version '0.1.2'
 }
 ```
 
@@ -26,7 +37,7 @@ plugins {
 
 ```kotlin
 plugins {
-    id("org.spotube.gradle-plugin") version "0.1.1"
+    id("org.spotube.gradle-plugin") version "0.1.2"
 }
 ```
 
@@ -36,7 +47,7 @@ Add the plugin to your version catalog (`gradle/libs.versions.toml`):
 
 ```toml
 [plugins]
-spotube = { id = "org.spotube.gradle-plugin", version = "0.1.1" }
+spotube = { id = "org.spotube.gradle-plugin", version = "0.1.2" }
 ```
 
 Then reference it in your build files:

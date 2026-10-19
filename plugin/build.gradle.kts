@@ -8,11 +8,10 @@
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
-    `maven-publish`
 
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.gradle.publish)
+    alias(libs.plugins.maven.publish)
 }
 
 repositories {
@@ -29,20 +28,55 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+group = "org.spotube"
+version = "0.1.2"
+
 gradlePlugin {
     // Define the plugin
     website = "https://spotube.org"
     vcsUrl = "https://github.com/team-spotube/gradle-plugin"
 
-    group = "org.spotube"
-
     val spotubeGradlePlugin by plugins.creating {
         id = "org.spotube.gradle-plugin"
         implementationClass = "org.spotube.SpotubeGradlePluginPlugin"
-        version = "0.1.2"
         displayName = "Spotube Gradle Plugin"
         description = "A Gradle plugin for Spotube that packages Zipline executables into smplug files."
         tags = listOf("spotube", "zipline", "smplug")
+    }
+}
+
+// Publishes to Maven Central (Central Portal), including the plugin marker artifact.
+// Requires mavenCentralUsername/Password and signing credentials (see README / publish workflow).
+mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
+
+    coordinates("org.spotube", "spotube-gradle-plugin", version.toString())
+
+    pom {
+        name.set("Spotube Gradle Plugin")
+        description.set("A Gradle plugin for Spotube that packages Zipline executables into smplug files.")
+        inceptionYear.set("2026")
+        url.set("https://spotube.org")
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("repo")
+            }
+        }
+        developers {
+            developer {
+                id.set("team-spotube")
+                name.set("Team Spotube")
+                url.set("https://github.com/team-spotube")
+            }
+        }
+        scm {
+            url.set("https://github.com/team-spotube/gradle-plugin")
+            connection.set("scm:git:git://github.com/team-spotube/gradle-plugin.git")
+            developerConnection.set("scm:git:ssh://git@github.com/team-spotube/gradle-plugin.git")
+        }
     }
 }
 
