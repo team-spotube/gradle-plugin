@@ -49,7 +49,12 @@ gradlePlugin {
 // Requires mavenCentralUsername/Password and signing credentials (see README / publish workflow).
 mavenPublishing {
     publishToMavenCentral()
-    signAllPublications()
+    // Sign only when credentials are provided, so publishToMavenLocal works without a key.
+    if (!providers.gradleProperty("signingInMemoryKey").orNull.isNullOrBlank() ||
+        !providers.gradleProperty("signing.keyId").orNull.isNullOrBlank()
+    ) {
+        signAllPublications()
+    }
 
     coordinates("org.spotube", "spotube-gradle-plugin", version.toString())
 
